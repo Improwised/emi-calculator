@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EMI Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Welcome to a EMI Calculator</h1>
+    <br />
+    <div>
+        <input type="text" id="amount" placeholder="Loan Amount">
+        <input type="text" id="interest" placeholder="Interest Rate" />
+        <input type="text" id="months" placeholder="Loan Duration (months)">
+        <input id="calculate" type="button" value="Calculate" />
+    </div>
+    <div id="results">
+    </div>
+    <script type="application/javascript" src="src/emi.js"></script>
+    <script type="application/javascript">
+      const button = document.getElementById('calculate');
+
+      button.addEventListener('click', (event) => {
+        const amount = Number(document.getElementById('amount').value);
+        const months = Number(document.getElementById('months').value);
+        const interest = Number(document.getElementById('interest').value);
+
+        const emi = EMI.Loan(amount, months, interest);
+        const table = EMI.emiToHtmlTable(emi)
+
+        document.getElementById('results').innerHTML = table;
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "name": "emi-calculator",
+  "version": "1.0.0",
+  "description": "A simple EMI calculator web application",
+  "main": "server.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint .",
+    "start": "node server.js",
+    "test": "./node_modules/.bin/jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/improwised/emi-calculator.git"
+  },
+  "keywords": [
+    "workshop",
+    "demo"
+  ],
+  "author": "Rakshit Menpara",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/improwised/emi-calculator/issues"
+  },
+  "homepage": "https://github.com/improwised/emi-calculator#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^25.1.0",
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "lint"
+  ]
+}
