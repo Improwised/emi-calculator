@@ -1,0 +1,31 @@
+[1mdiff --git a/src/emi.js b/src/emi.js[m
+[1mindex e36c41e..e21c2f5 100644[m
+[1m--- a/src/emi.js[m
+[1m+++ b/src/emi.js[m
+[36m@@ -20,7 +20,7 @@[m [mfunction Loan (amount, installmentsNumber, interestRate) {[m
+   let principalSum = 0[m
+   let sum = 0[m
+ [m
+[31m-  for (let i = 0; i <= installmentsNumber; i++) {[m
+[32m+[m[32m  for (let i = 0; i < installmentsNumber; i++) {[m
+     const inst = getNextInstallment([m
+       amount, installmentsNumber, interestRate, principalSum, interestSum[m
+     )[m
+[1mdiff --git a/tests/emi.test.js b/tests/emi.test.js[m
+[1mindex 5c114bd..8e5bb06 100644[m
+[1m--- a/tests/emi.test.js[m
+[1m+++ b/tests/emi.test.js[m
+[36m@@ -18,3 +18,12 @@[m [mtest('Should calculate correct EMI installments', () => {[m
+ [m
+   expect(EMI.rnd(loan.principalSum + loan.interestSum)).toBe(loan.sum)[m
+ })[m
+[32m+[m[32mtest('Should throw an error on negative interest rate', () => {[m
+[32m+[m[32m  expect(() => EMI.Loan(10000, -1, 10)).toThrowError('wrong parameters: 10000 -1 10')[m
+[32m+[m[32m});[m
+[32m+[m[32mtest('Should throw an error on negative interest rate', () => {[m
+[32m+[m[32m  expect(() => EMI.Loan(-10000, 1, 10)).toThrowError('wrong parameters: -10000 1 10')[m
+[32m+[m[32m});[m
+[32m+[m[32mtest('Should throw an error on negative interest rate', () => {[m
+[32m+[m[32m  expect(() => EMI.Loan(10000, 1, -10)).toThrowError('wrong parameters: 10000 1 -10'),[m
+[32m+[m[32m});[m
+\ No newline at end of file[m
