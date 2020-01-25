@@ -9,7 +9,7 @@
  */
 function Loan (amount, installmentsNumber, interestRate) {
   /** Checking params */
-  if (!amount ||
+  if (!amount || amount <= 0 ||
      !installmentsNumber ||
      !interestRate) {
     throw new Error(`wrong parameters: ${amount} ${installmentsNumber} ${interestRate}`)
@@ -20,7 +20,7 @@ function Loan (amount, installmentsNumber, interestRate) {
   let principalSum = 0
   let sum = 0
 
-  for (let i = 0; i <= installmentsNumber; i++) {
+  for (let i = 0; i < installmentsNumber; i++) {
     const inst = getNextInstallment(
       amount, installmentsNumber, interestRate, principalSum, interestSum
     )
