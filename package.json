@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint .",
+    "lint-fix": "./node_modules/.bin/eslint . --fix",
     "start": "node server.js",
     "test": "./node_modules/.bin/jest --coverage"
   },
