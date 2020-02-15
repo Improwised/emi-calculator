@@ -3,17 +3,22 @@
   <head>
     <title>EMI Calculator</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   </head>
   <body>
-    <h1>Welcome to a EMI Calculator</h1>
+    <center><h1>Welcome to a EMI Calculator</h1></center>
     <br />
-    <div>
-        <input type="text" id="amount" placeholder="Loan Amount">
-        <input type="text" id="interest" placeholder="Interest Rate" />
-        <input type="text" id="months" placeholder="Loan Duration (months)">
-        <input id="calculate" type="button" value="Calculate" />
+    <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" id="amount" placeholder="Loan Amount" style="margin-bottom: 5px;">
+        <input type="text" class="form-control" id="interest" placeholder="Interest Rate" style="margin-bottom: 5px;"/>
+        <input type="text" class="form-control" id="months" placeholder="Loan Duration (months)" style="margin-bottom: 5px;">
+        <input id="calculate" class="btn btn-primary" type="button" value="Calculate" style="margin-bottom: 5px;"/>
+        </div>
+        <div class="col-md-3"></div>
     </div>
-    <div id="results">
+    <div id="results" class="jumbotron">
     </div>
     <script type="application/javascript" src="src/emi.js"></script>
     <script type="application/javascript">
