@@ -1,0 +1,12 @@
+body{
+    text-align: center;
+    align-items: center;
+}
+h1{
+    display: inline-block;
+    border-bottom: 1px solid grey;
+    color: grey;
+}
+input{
+    border: 1px solid grey;
+}
