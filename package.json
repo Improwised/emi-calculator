@@ -4,10 +4,9 @@
   "description": "A simple EMI calculator web application",
   "main": "server.js",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint .",
-    "lint-fix": "./node_modules/.bin/eslint . --fix",
-    "start": "node server.js",
-    "test": "./node_modules/.bin/jest --coverage"
+    "lint": "node ./node_modules/.bin/eslint .",
+    "lint-fix": "node ./node_modules/.bin/eslint . --fix",
+    "test": "node ./node_modules/.bin/jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -24,13 +23,13 @@
   },
   "homepage": "https://github.com/improwised/emi-calculator#readme",
   "devDependencies": {
-    "eslint": "^6.8.0",
+    "eslint": "^8.10.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "jest": "^25.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "jest": "^27.5.1",
     "pre-commit": "^1.2.2"
   },
   "pre-commit": [
