@@ -8,7 +8,7 @@ test('Should calculate correct EMI installments', () => {
   const loan = EMI.Loan(10000, 12, 10)
 
   expect(loan).toBeDefined()
-  expect(loan.installments.length).toBe(12)
+  expect(loan.installments.length).toBe(12...
   expect(loan.installments[0].installment).toBe(879.16)
   expect(loan.installments[12 - 1].installment).toBe(879.16)
   expect(loan.amount).toBe(10000)
