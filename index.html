@@ -1,20 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
     <title>EMI Calculator</title>
-    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   </head>
-  <body>
-    <h1>Welcome to a EMI Calculator</h1>
-    <br />
-    <div>
-        <input type="text" id="amount" placeholder="Loan Amount">
-        <input type="text" id="interest" placeholder="Interest Rate" />
-        <input type="text" id="months" placeholder="Loan Duration (months)">
-        <input id="calculate" type="button" value="Calculate" />
-    </div>
-    <div id="results">
-    </div>
+  <body class="d-flex flex-column h-100">
+
+    <!-- Nav -->
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container container-fluid">
+          <h1 class="navbar-brand">EMI Calculator</h1>
+        </div>
+      </nav>
+    </header>
+    <!-- Nav End -->
+
+    <main class="flex-shrink-0">
+      <div class="container" style="padding-top: 70px">
+        <!-- Form -->
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="amount" placeholder="100000">
+              <label for="floatingInput">Loan Amount</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating">
+            <input type="text" class="form-control" id="interest" placeholder="10" />
+              <label for="floatingInput">Annual Interest Rate</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating">
+            <input type="text" class="form-control" id="months" placeholder="120">
+              <label for="floatingInput">Loan Duration (months)</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <input id="calculate" class="btn btn-primary btn-lg" type="button" value="Calculate" />
+          </div>
+        </div>
+        <!-- Form End -->
+
+        <!-- Results Container -->
+        <div id="results" class="table-responsive table-responsive-sm">
+        </div>
+        <!-- Results End -->
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3 border-top bg-light">
+      <div class="container">
+        <span class="text-muted">Made with ❤ by <a href="https://www.improwised.com">Improwised Technologies Private Limited</a> for <a href="http://bit.ly/msd-workshop">Modern Software Development Workflows</a> Workshop.</span>
+      </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Scripts -->
     <script type="application/javascript" src="src/emi.js"></script>
     <script type="application/javascript">
       const button = document.getElementById('calculate');
@@ -30,5 +75,6 @@
         document.getElementById('results').innerHTML = table;
       });
     </script>
+    <!-- Scripts End -->
   </body>
 </html>

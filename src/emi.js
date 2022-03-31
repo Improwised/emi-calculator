@@ -90,10 +90,10 @@ function emiToHtmlTable (loan, params) {
   }
   var fm = params.formatMoney
   var html = [
-    '<table>' +
+    '<table class="table table-striped">' +
       '<thead>' +
         '<tr>' +
-          '<th></th>' +
+          '<th>#</th>' +
           '<th>Principal</th>' +
           '<th>Interest</th>' +
           '<th>Installment</th>' +
@@ -122,14 +122,16 @@ function emiToHtmlTable (loan, params) {
   }
 
   html[1] +=
-    '<tr>' +
-      '<td>Total</td>' +
-      '<td>' + fm(loan.principalSum) + '</td>' +
-      '<td>' + fm(loan.interestSum) + '</td>' +
-      '<td>' + fm(loan.sum) + '</td>' +
-      '<td>-</td>' +
-      '<td>-</td>' +
-    '</tr>'
+    '<tfoot>' +
+      '<tr>' +
+        '<td>Total</td>' +
+        '<td>' + fm(loan.principalSum) + '</td>' +
+        '<td>' + fm(loan.interestSum) + '</td>' +
+        '<td>' + fm(loan.sum) + '</td>' +
+        '<td>-</td>' +
+        '<td>-</td>' +
+      '</tr>' +
+    '</tfoot>'
 
   return html.join('')
 }
