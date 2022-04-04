@@ -7,7 +7,7 @@
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
     "test": "jest --coverage",
-    "test-win": "jest --coverage"
+    "test-win": "jest.cmd --coverage"
   },
   "repository": {
     "type": "git",
