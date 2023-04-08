@@ -7,11 +7,12 @@
  *
  * @return {object}
  */
-function Loan (amount, installmentsNumber, interestRate) {
+function Loan(amount, installmentsNumber, interestRate) {
   /** Checking params */
-  if (!amount ||
-     !installmentsNumber ||
-     !interestRate) {
+  // function Loan
+  if (!amount || amount <= 0 ||
+    !installmentsNumber || installmentsNumber <= 0 ||
+    !interestRate || interestRate <= 0) {
     throw new Error(`wrong parameters: ${amount} ${installmentsNumber} ${interestRate}`)
   }
 
@@ -83,7 +84,7 @@ const getNextInstallment = (
  *
  * @return {string}       html string with table
  */
-function emiToHtmlTable (loan, params) {
+function emiToHtmlTable(loan, params) {
   params = params || {}
   params.formatMoney = params.formatMoney || function (num) {
     return num.toFixed(2)
@@ -91,17 +92,17 @@ function emiToHtmlTable (loan, params) {
   var fm = params.formatMoney
   var html = [
     '<table class="table table-striped">' +
-      '<thead>' +
-        '<tr>' +
-          '<th>#</th>' +
-          '<th>Principal</th>' +
-          '<th>Interest</th>' +
-          '<th>Installment</th>' +
-          '<th>Remaining Principal</th>' +
-          '<th>Total Interest Paid</th>' +
-        '</tr>' +
-      '</thead>' +
-      '<tbody>',
+    '<thead>' +
+    '<tr>' +
+    '<th>#</th>' +
+    '<th>Principal</th>' +
+    '<th>Interest</th>' +
+    '<th>Installment</th>' +
+    '<th>Remaining Principal</th>' +
+    '<th>Total Interest Paid</th>' +
+    '</tr>' +
+    '</thead>' +
+    '<tbody>',
     '', // body content [1]
     '</tbody>' +
     '</table>'
@@ -110,33 +111,33 @@ function emiToHtmlTable (loan, params) {
   for (var i = 0; i < loan.installments.length; i++) {
     var inst = loan.installments[i]
     var instHtml =
-          '<tr>' +
-            '<td>' + (i + 1) + '</td>' +
-            '<td>' + fm(inst.principal) + '</td>' +
-            '<td>' + fm(inst.interest) + '</td>' +
-            '<td>' + fm(inst.installment) + '</td>' +
-            '<td>' + fm(inst.remain) + '</td>' +
-            '<td>' + fm(inst.interestSum) + '</td>' +
-          '</tr>'
+      '<tr>' +
+      '<td>' + (i + 1) + '</td>' +
+      '<td>' + fm(inst.principal) + '</td>' +
+      '<td>' + fm(inst.interest) + '</td>' +
+      '<td>' + fm(inst.installment) + '</td>' +
+      '<td>' + fm(inst.remain) + '</td>' +
+      '<td>' + fm(inst.interestSum) + '</td>' +
+      '</tr>'
     html[1] += instHtml
   }
 
   html[1] +=
     '<tfoot>' +
-      '<tr>' +
-        '<td>Total</td>' +
-        '<td>' + fm(loan.principalSum) + '</td>' +
-        '<td>' + fm(loan.interestSum) + '</td>' +
-        '<td>' + fm(loan.sum) + '</td>' +
-        '<td>-</td>' +
-        '<td>-</td>' +
-      '</tr>' +
+    '<tr>' +
+    '<td>Total</td>' +
+    '<td>' + fm(loan.principalSum) + '</td>' +
+    '<td>' + fm(loan.interestSum) + '</td>' +
+    '<td>' + fm(loan.sum) + '</td>' +
+    '<td>-</td>' +
+    '<td>-</td>' +
+    '</tr>' +
     '</tfoot>'
 
   return html.join('')
 }
 
-function rnd (num) {
+function rnd(num) {
   return Math.round(num * 100) / 100
 }
 
