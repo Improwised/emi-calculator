@@ -9,9 +9,9 @@
  */
 function Loan (amount, installmentsNumber, interestRate) {
   /** Checking params */
-  if (!amount ||
-     !installmentsNumber ||
-     !interestRate) {
+  if (!amount || amount <= 0 ||
+    !installmentsNumber || installmentsNumber <= 0 ||
+    !interestRate || interestRate <= 0) {
     throw new Error(`wrong parameters: ${amount} ${installmentsNumber} ${interestRate}`)
   }
 
