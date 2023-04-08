@@ -9,10 +9,10 @@
  */
 function Loan (amount, installmentsNumber, interestRate) {
   /** Checking params */
-  if (!amount ||
-     !installmentsNumber ||
-     !interestRate) {
-    throw new Error(`wrong parameters: ${amount} ${installmentsNumber} ${interestRate}`)
+  if (!amount || !installmentsNumber || !interestRate) {
+    throw new Error(
+      `wrong parameters: ${amount} ${installmentsNumber} ${interestRate}`
+    )
   }
 
   const installments = []
@@ -20,9 +20,13 @@ function Loan (amount, installmentsNumber, interestRate) {
   let principalSum = 0
   let sum = 0
 
-  for (let i = 0; i <= installmentsNumber; i++) {
+  for (let i = 0; i < installmentsNumber; i++) {
     const inst = getNextInstallment(
-      amount, installmentsNumber, interestRate, principalSum, interestSum
+      amount,
+      installmentsNumber,
+      interestRate,
+      principalSum,
+      interestSum
     )
 
     sum += inst.installment
@@ -39,7 +43,7 @@ function Loan (amount, installmentsNumber, interestRate) {
   }
 
   return {
-    installments: installments,
+    installments,
     amount: rnd(amount),
     interestSum: rnd(interestSum),
     principalSum: rnd(principalSum),
@@ -58,19 +62,25 @@ function Loan (amount, installmentsNumber, interestRate) {
  * @returns {{ principal: number, interest: number, installment: number, remain: number, interestSum: number }}
  */
 const getNextInstallment = (
-  amount, installmentsNumber, interestRate, principalSum, interestSum
+  amount,
+  installmentsNumber,
+  interestRate,
+  principalSum,
+  interestSum
 ) => {
   const monthlyInterestRate = interestRate / (12 * 100)
 
   const irmPow = Math.pow(1 + monthlyInterestRate, installmentsNumber)
-  const installment = rnd(amount * ((monthlyInterestRate * irmPow) / (irmPow - 1)))
+  const installment = rnd(
+    amount * ((monthlyInterestRate * irmPow) / (irmPow - 1))
+  )
   const interest = rnd((amount - principalSum) * monthlyInterestRate)
   const principal = installment - interest
 
   return {
-    principal: principal,
-    interest: interest,
-    installment: installment,
+    principal,
+    interest,
+    installment,
     remain: amount - principalSum - principal,
     interestSum: interestSum + interest
   }
@@ -85,52 +95,71 @@ const getNextInstallment = (
  */
 function emiToHtmlTable (loan, params) {
   params = params || {}
-  params.formatMoney = params.formatMoney || function (num) {
-    return num.toFixed(2)
-  }
-  var fm = params.formatMoney
-  var html = [
+  params.formatMoney =
+    params.formatMoney ||
+    function (num) {
+      return num.toFixed(2)
+    }
+  const fm = params.formatMoney
+  const html = [
     '<table class="table table-striped">' +
       '<thead>' +
-        '<tr>' +
-          '<th>#</th>' +
-          '<th>Principal</th>' +
-          '<th>Interest</th>' +
-          '<th>Installment</th>' +
-          '<th>Remaining Principal</th>' +
-          '<th>Total Interest Paid</th>' +
-        '</tr>' +
+      '<tr>' +
+      '<th>#</th>' +
+      '<th>Principal</th>' +
+      '<th>Interest</th>' +
+      '<th>Installment</th>' +
+      '<th>Remaining Principal</th>' +
+      '<th>Total Interest Paid</th>' +
+      '</tr>' +
       '</thead>' +
       '<tbody>',
     '', // body content [1]
-    '</tbody>' +
-    '</table>'
+    '</tbody>' + '</table>'
   ]
 
-  for (var i = 0; i < loan.installments.length; i++) {
-    var inst = loan.installments[i]
-    var instHtml =
-          '<tr>' +
-            '<td>' + (i + 1) + '</td>' +
-            '<td>' + fm(inst.principal) + '</td>' +
-            '<td>' + fm(inst.interest) + '</td>' +
-            '<td>' + fm(inst.installment) + '</td>' +
-            '<td>' + fm(inst.remain) + '</td>' +
-            '<td>' + fm(inst.interestSum) + '</td>' +
-          '</tr>'
+  for (let i = 0; i < loan.installments.length; i++) {
+    const inst = loan.installments[i]
+    const instHtml =
+      '<tr>' +
+      '<td>' +
+      (i + 1) +
+      '</td>' +
+      '<td>' +
+      fm(inst.principal) +
+      '</td>' +
+      '<td>' +
+      fm(inst.interest) +
+      '</td>' +
+      '<td>' +
+      fm(inst.installment) +
+      '</td>' +
+      '<td>' +
+      fm(inst.remain) +
+      '</td>' +
+      '<td>' +
+      fm(inst.interestSum) +
+      '</td>' +
+      '</tr>'
     html[1] += instHtml
   }
 
   html[1] +=
     '<tfoot>' +
-      '<tr>' +
-        '<td>Total</td>' +
-        '<td>' + fm(loan.principalSum) + '</td>' +
-        '<td>' + fm(loan.interestSum) + '</td>' +
-        '<td>' + fm(loan.sum) + '</td>' +
-        '<td>-</td>' +
-        '<td>-</td>' +
-      '</tr>' +
+    '<tr>' +
+    '<td>Total</td>' +
+    '<td>' +
+    fm(loan.principalSum) +
+    '</td>' +
+    '<td>' +
+    fm(loan.interestSum) +
+    '</td>' +
+    '<td>' +
+    fm(loan.sum) +
+    '</td>' +
+    '<td>-</td>' +
+    '<td>-</td>' +
+    '</tr>' +
     '</tfoot>'
 
   return html.join('')
@@ -152,8 +181,8 @@ if (typeof module === 'undefined') {
 } else {
   // node or browserfy
   module.exports = {
-    Loan: Loan,
-    emiToHtmlTable: emiToHtmlTable,
-    rnd: rnd
+    Loan,
+    emiToHtmlTable,
+    rnd
   }
 }
