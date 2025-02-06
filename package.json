@@ -35,5 +35,8 @@
   },
   "pre-commit": [
     "lint"
-  ]
+  ],
+  "dependencies": {
+    "emi-calculator": "file:"
+  }
 }
